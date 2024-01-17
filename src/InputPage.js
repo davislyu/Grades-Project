@@ -1,12 +1,21 @@
 import React, { useState } from 'react';
+import { TextField, Button, Box, Typography, Container, Alert } from '@mui/material';
 
 function InputPage() {
     const [subject, setSubject] = useState('');
     const [grade, setGrade] = useState('');
     const [desc, setDesc] = useState('');
+    const [error, setError] = useState('');
 
     const handleAddData = () => {
-        // Send a POST request to add data to the backend
+        if (!subject || !grade) {
+            setError('Please fill in both Subject and Grade fields.');
+            return;
+        }
+
+        // Reset error message if present
+        setError('');
+
         fetch('http://localhost:3000/api/add', {
             method: 'POST',
             headers: {
@@ -14,34 +23,63 @@ function InputPage() {
             },
             body: JSON.stringify({ subject, grade, desc }),
         })
-
             .then((response) => {
                 if (response.ok) {
                     console.log('Data added successfully.');
-                    // Clear input fields after successful submission
                     setSubject('');
                     setGrade('');
                     setDesc('');
                 } else {
                     console.error('Failed to add data.');
+                    setError('Failed to add data.');
                 }
             });
     };
 
     return (
-        <div>
-            <h1>Input Page</h1>
-            <div>
-                <label>Subject: </label>
-                <input type="text" value={subject} onChange={(e) => setSubject(e.target.value)} />
-            </div>
-            <div>
-                <label>Grade: </label>
-                <input type="text" value={grade} onChange={(e) => setGrade(e.target.value)} />
-            </div>
-
-            <button onClick={handleAddData}>Add Data</button>
-        </div>
+        <Container component="main" maxWidth="xs">
+            <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                <Typography component="h1" variant="h5">Input Page</Typography>
+                <Box component="form" sx={{ mt: 1 }}>
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        label="Subject"
+                        value={subject}
+                        onChange={(e) => setSubject(e.target.value)}
+                        autoFocus
+                    />
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        label="Grade"
+                        value={grade}
+                        onChange={(e) => setGrade(e.target.value)}
+                    />
+                    <TextField
+                        margin="normal"
+                        required
+                        fullWidth
+                        label="Description"
+                        value={desc}
+                        onChange={(e) => setDesc(e.target.value)}
+                        multiline
+                        rows={4}
+                    />
+                    {error && <Alert severity="error" sx={{ mt: 2 }}>{error}</Alert>}
+                    <Button
+                        onClick={handleAddData}
+                        fullWidth
+                        variant="contained"
+                        sx={{ mt: 3, mb: 2 }}
+                    >
+                        Add Data
+                    </Button>
+                </Box>
+            </Box>
+        </Container>
     );
 }
 
