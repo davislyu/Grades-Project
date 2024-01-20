@@ -44,7 +44,7 @@ function HomePage() {
         <div className='table-container'>
             <h1>Home Page</h1>
             <TableContainer component={Paper}>
-                <Table aria-label="simple table">
+                <Table className='actualtable' aria-label="simple table">
                     <TableHead>
                         <TableRow>
                             <TableCell>Subject</TableCell>
