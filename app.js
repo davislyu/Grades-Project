@@ -1,9 +1,10 @@
+//app.js
 const express = require('express');
 const bodyParser = require('body-parser');
 const sqlite3 = require('sqlite3').verbose();
 const cors = require('cors');
 const app = express();
-const port = 3000;
+const port = 3005;
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -17,7 +18,7 @@ const db = new sqlite3.Database('mydatabase.db', (err) => {
 });
 
 db.serialize(() => {
-    db.run('CREATE TABLE IF NOT EXISTS subjectData (subject TEXT, grade INTEGER, desc TEXT)');
+    db.run('CREATE TABLE IF NOT EXISTS subjectData (subject TEXT, grade INTEGER, desc TEXT, datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP)');
 });
 
 app.post('/api/add', (req, res) => {
@@ -40,6 +41,17 @@ app.delete('/api/delete/:subject', (req, res) => {
             res.status(500).json({ error: 'Internal Server Error' });
         } else {
             res.sendStatus(200);
+        }
+    });
+});
+
+app.get('/api/entries', (req, res) => {
+    db.all('SELECT subject, grade, desc, strftime("%Y-%m-%d %H:%M:%S", datetime) as date_added FROM subjectData', (err, rows) => {
+        if (err) {
+            console.error(err.message);
+            res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+            res.json(rows);
         }
     });
 });

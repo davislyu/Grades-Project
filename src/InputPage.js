@@ -1,5 +1,7 @@
+//InputPage.js
 import React, { useState } from 'react';
 import { TextField, Button, Box, Typography, Container, Alert } from '@mui/material';
+import "./InputPage.css"
 
 function InputPage() {
     const [subject, setSubject] = useState('');
@@ -13,10 +15,9 @@ function InputPage() {
             return;
         }
 
-        // Reset error message if present
         setError('');
 
-        fetch('http://localhost:3000/api/add', {
+        fetch('http://localhost:3005/api/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
