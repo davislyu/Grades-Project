@@ -1,5 +1,3 @@
-# Project README.md
-
 ## 🌟 Introduction
 Welcome to our React project! This application is designed to manage and display statistical data for various subjects. It's built using React and Material-UI, featuring a simple yet effective interface for data input, visualization, and management.
 
