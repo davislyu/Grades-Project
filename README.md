@@ -1,70 +1,60 @@
-# Getting Started with Create React App
+# Project README.md
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## 🌟 Introduction
+Welcome to our React project! This application is designed to manage and display statistical data for various subjects. It's built using React and Material-UI, featuring a simple yet effective interface for data input, visualization, and management.
 
-## Available Scripts
+## 🚀 Features
+- **Home Page**: Displays statistics and entries in tabular form. Users can view mean, median, standard deviation of subjects and manage entries.
+- **Input Page**: Allows users to add new data entries for subjects.
+- **Navigation**: Easy navigation between the Home and Input pages using React Router.
+- **Data Management**: Options to add new data and delete existing records.
 
-In the project directory, you can run:
+## 🛠️ Installation & Setup
 
-### `npm start`
+1. **Backend Setup**
+   - Open a terminal and navigate to the server-side directory.
+   - Run the backend server:
+     ```
+     node app.js
+     ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+2. **Frontend Setup**
+   - Open another terminal run ,navigate to the client-side folder and run: 
+   - Install dependencies:
+     ```
+     npm install
+     ```
+   - Run the application:
+     ```
+     npm start
+     ```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 📄 Usage
 
-### `npm test`
+- **Navigate** through the app using the navbar at the top.
+- **View** statistics on the Home Page, presented in a clean table format.
+- **Add** new data by navigating to the Input Page and filling in the form.
+- **Delete** data directly from the Home Page using the delete button in the table.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📚 Database
 
-### `npm run build`
+This project uses SQLite as its database solution due to its simplicity and ease of use. SQLite offers a lightweight, file-based approach, making it an excellent choice for small to medium-sized applications like this one.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## 🧰 Built With
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- [React.js](https://reactjs.org/) - A JavaScript library for building user interfaces.
+- [Material-UI](https://mui.com/) - A popular React UI framework.
+- [React Router](https://reactrouter.com/) - For seamless navigation between components.
+- [SQLite](https://www.sqlite.org/index.html) - A C-language library that implements a small, fast, self-contained, high-reliability, full-featured, SQL database engine.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🌟 Usage Idea
 
-### `npm run eject`
+This application is ideal for educators and students to track and analyze academic performance across various subjects. It provides an easy way to input, view, and manage grades or other performance metrics, offering valuable insights through statistical analysis. Its intuitive design makes it accessible for users with any level of technical expertise.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## 📚 License
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Distributed under the MIT License. See `LICENSE` for more information.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+🌟 _Happy Usage!_ 🌟
