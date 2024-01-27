@@ -18,20 +18,23 @@ const db = new sqlite3.Database('mydatabase.db', (err) => {
 });
 
 db.serialize(() => {
-    db.run('CREATE TABLE IF NOT EXISTS subjectData (subject TEXT, grade INTEGER, desc TEXT, datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP)');
+    db.run('DROP TABLE IF EXISTS subjectData');
+    db.run('CREATE TABLE subjectData (id INTEGER PRIMARY KEY AUTOINCREMENT, subject TEXT, grade INTEGER, desc TEXT, datetime TIMESTAMP DEFAULT CURRENT_TIMESTAMP)');
 });
+
 
 app.post('/api/add', (req, res) => {
     const { subject, grade, desc } = req.body;
-    db.run('INSERT INTO subjectData (subject, grade, desc) VALUES (?, ?, ?)', [subject, grade, desc], (err) => {
+    db.run('INSERT INTO subjectData (subject, grade, desc) VALUES (?, ?, ?)', [subject, grade, desc], function(err) {
         if (err) {
             console.error(err.message);
             res.status(500).json({ error: 'Internal Server Error' });
         } else {
-            res.sendStatus(200);
+            res.status(200).json({ id: this.lastID });
         }
     });
 });
+
 
 app.delete('/api/delete/:subject', (req, res) => {
     const { subject } = req.params;
@@ -45,8 +48,20 @@ app.delete('/api/delete/:subject', (req, res) => {
     });
 });
 
+app.delete('/api/delete-entry/:id', (req, res) => {
+    const { id } = req.params;
+    db.run('DELETE FROM subjectData WHERE id = ?', [id], (err) => {
+        if (err) {
+            console.error(err.message);
+            res.status(500).json({ error: 'Internal Server Error' });
+        } else {
+            res.sendStatus(200);
+        }
+    });
+});
+
 app.get('/api/entries', (req, res) => {
-    db.all('SELECT subject, grade, desc, strftime("%Y-%m-%d %H:%M:%S", datetime) as date_added FROM subjectData', (err, rows) => {
+    db.all('SELECT id, subject, grade, desc, strftime("%Y-%m-%d %H:%M:%S", datetime) as date_added FROM subjectData', (err, rows) => {
         if (err) {
             console.error(err.message);
             res.status(500).json({ error: 'Internal Server Error' });

@@ -33,6 +33,23 @@ function HomePage() {
             })
             .catch(error => setError('Error: ' + error.message));
     };
+    const handleDeleteEntry = (id) => {
+        console.log(`Deleting entry with id: ${id}`); // Add this line for debugging
+        fetch(`http://localhost:3005/api/delete-entry/${id}`, { method: 'DELETE' })
+            .then(response => {
+                console.log('Delete response:', response); // Log the response
+                if (!response.ok) {
+                    throw new Error('Failed to delete entry');
+                }
+                setEntries(prevEntries => prevEntries.filter(entry => entry.id !== id));
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                setError('Error: ' + error.message);
+            });
+    };
+    
+
 
     if (error) {
         return <div>Error: {error}</div>;
@@ -82,6 +99,7 @@ function HomePage() {
                             <TableCell align="right">Grade</TableCell>
                             <TableCell align="right">Description</TableCell>
                             <TableCell align="right">Date Added</TableCell>
+                            <TableCell align="right">Delete</TableCell> {/* New Column for Delete */}
                         </TableRow>
                     </TableHead>
                     <TableBody>
@@ -91,6 +109,11 @@ function HomePage() {
                                 <TableCell align="right">{entry.grade}</TableCell>
                                 <TableCell align="right">{entry.desc}</TableCell>
                                 <TableCell align="right">{entry.date_added}</TableCell>
+                                <TableCell align="right">
+                                    <IconButton onClick={() => handleDeleteEntry(entry.id)}>
+                                        <DeleteIcon />
+                                    </IconButton>
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
