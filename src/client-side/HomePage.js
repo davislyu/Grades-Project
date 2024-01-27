@@ -34,20 +34,33 @@ function HomePage() {
             .catch(error => setError('Error: ' + error.message));
     };
     const handleDeleteEntry = (id) => {
-        console.log(`Deleting entry with id: ${id}`); // Add this line for debugging
         fetch(`http://localhost:3005/api/delete-entry/${id}`, { method: 'DELETE' })
             .then(response => {
-                console.log('Delete response:', response); // Log the response
                 if (!response.ok) {
                     throw new Error('Failed to delete entry');
                 }
                 setEntries(prevEntries => prevEntries.filter(entry => entry.id !== id));
+                // Refetch stats
+                fetchStats();
             })
             .catch(error => {
                 console.error('Error:', error);
                 setError('Error: ' + error.message);
             });
     };
+    
+    const fetchStats = () => {
+        fetch('http://localhost:3005/api/stats')
+            .then(response => response.json())
+            .then(data => setStats(data))
+            .catch(error => setError('Error fetching stats: ' + error.message));
+    };
+    
+    useEffect(() => {
+        fetchStats(); 
+
+    }, []);
+    
     
 
 
@@ -58,7 +71,7 @@ function HomePage() {
 
     return (
         <div className='table-container'>
-            <h1>Home Page</h1>
+            <h1>Grades Interface</h1>
             
             <TableContainer component={Paper}>
                 <Table className='actualtable' aria-label="simple table">
@@ -89,10 +102,9 @@ function HomePage() {
                 </Table>
             </TableContainer>
 
-            {/* Entries Table */}
-            <h2>All Entries</h2>
-            <TableContainer component={Paper}>
-                <Table className='actualtable' aria-label="entries table">
+            <h2>Grade History</h2>
+            <TableContainer  component={Paper}>
+                <Table className='actualtable entry-history' aria-label="entries table">
                     <TableHead>
                         <TableRow>
                             <TableCell>Subject</TableCell>
