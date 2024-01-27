@@ -10,32 +10,35 @@ function InputPage() {
     const [error, setError] = useState('');
 
     const handleAddData = () => {
-        if (!subject || !grade) {
+        const trimmedSubject = subject.trimEnd();
+        
+        if (!trimmedSubject || !grade) {
             setError('Please fill in both Subject and Grade fields.');
             return;
         }
-
+    
         setError('');
-
+    
         fetch('http://localhost:3005/api/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ subject, grade, desc }),
+            body: JSON.stringify({ subject: trimmedSubject, grade, desc }),
         })
-            .then((response) => {
-                if (response.ok) {
-                    console.log('Data added successfully.');
-                    setSubject('');
-                    setGrade('');
-                    setDesc('');
-                } else {
-                    console.error('Failed to add data.');
-                    setError('Failed to add data.');
-                }
-            });
+        .then((response) => {
+            if (response.ok) {
+                console.log('Data added successfully.');
+                setSubject('');
+                setGrade('');
+                setDesc('');
+            } else {
+                console.error('Failed to add data.');
+                setError('Failed to add data.');
+            }
+        });
     };
+    
 
     return (
         <Container component="main" maxWidth="xs">
@@ -48,11 +51,12 @@ function InputPage() {
                         fullWidth
                         label="Subject"
                         value={subject}
-                        onChange={(e) => setSubject(e.target.value)}
+                        onChange={(e) => setSubject(e.target.value)} 
                         autoFocus
                     />
                     <TextField
                         margin="normal"
+                        type='number'
                         required
                         fullWidth
                         label="Grade"
