@@ -56,7 +56,7 @@ function InputPage() {
         }}
       >
         <Typography color={"white"} component="h1" variant="h5">
-          Input Page
+          Grades Input
         </Typography>
         <Box component="form" sx={{ mt: 1 }}>
           <TextField
