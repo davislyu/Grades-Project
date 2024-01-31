@@ -55,7 +55,7 @@ function InputPage() {
           alignItems: "center",
         }}
       >
-        <Typography component="h1" variant="h5">
+        <Typography color={"white"} component="h1" variant="h5">
           Input Page
         </Typography>
         <Box component="form" sx={{ mt: 1 }}>

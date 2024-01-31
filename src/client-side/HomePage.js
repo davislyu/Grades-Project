@@ -76,9 +76,12 @@ function HomePage() {
     return <div>Error: {error}</div>;
   }
 
+  const h1Style = {
+    color: "white",
+  };
   return (
     <div className="table-container">
-      <h1>Grades Interface</h1>
+      <h1 style={h1Style}>Grades Interface</h1>
 
       <TableContainer component={Paper}>
         <Table className="actualtable" aria-label="simple table">
@@ -123,7 +126,7 @@ function HomePage() {
         </Table>
       </TableContainer>
 
-      <h2>Grade History</h2>
+      <h2 style={h1Style}>Grade History</h2>
       <TableContainer component={Paper}>
         <Table className="actualtable entry-history" aria-label="entries table">
           <TableHead>
