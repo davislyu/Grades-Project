@@ -26,7 +26,7 @@ function InputPage() {
 
     setError("");
 
-    fetch("http://localhost:3005/api/add", {
+    fetch("https://web-service-grades-proj.onrender.com/api/add", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

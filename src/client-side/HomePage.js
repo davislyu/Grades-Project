@@ -18,19 +18,24 @@ function HomePage() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:3005/api/stats")
+    fetch("https://web-service-grades-proj.onrender.com/api/stats")
       .then((response) => response.json())
       .then((data) => setStats(data))
       .catch((error) => setError("Error fetching stats: " + error.message));
 
-    fetch("http://localhost:3005/api/entries")
+    fetch("https://web-service-grades-proj.onrender.com/api/entries")
       .then((response) => response.json())
       .then((data) => setEntries(data))
       .catch((error) => setError("Error fetching entries: " + error.message));
   }, []);
 
   const handleDelete = (subject) => {
-    fetch(`http://localhost:3005/api/delete/${subject}`, { method: "DELETE" })
+    fetch(
+      `https://web-service-grades-proj.onrender.com/api/delete/${subject}`,
+      {
+        method: "DELETE",
+      }
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to delete record");
@@ -45,7 +50,10 @@ function HomePage() {
       .catch((error) => setError("Error: " + error.message));
   };
   const handleDeleteEntry = (id) => {
-    fetch(`http://localhost:3005/api/delete-entry/${id}`, { method: "DELETE" })
+    fetch(
+      `https://web-service-grades-proj.onrender.com/api/delete-entry/${id}`,
+      { method: "DELETE" }
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Failed to delete entry");
@@ -62,7 +70,7 @@ function HomePage() {
   };
 
   const fetchStats = () => {
-    fetch("http://localhost:3005/api/stats")
+    fetch("https://web-service-grades-proj.onrender.com/api/stats")
       .then((response) => response.json())
       .then((data) => setStats(data))
       .catch((error) => setError("Error fetching stats: " + error.message));
