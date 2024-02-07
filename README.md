@@ -1,6 +1,9 @@
 ## 🌟 Introduction
 Welcome to our React project! This application is designed to manage and display statistical data for various subjects. It's built using React and Material-UI, featuring a simple yet effective interface for data input, visualization, and management.
 
+https://github.com/davislyu/Grades-Project/assets/27707434/f72e0bb7-690d-4f51-bbd9-c24d4519c7ce
+
+
 ## 🚀 Features
 - **Home Page**: Displays statistics and entries in tabular form. Users can view mean, median, standard deviation of subjects and manage entries.
 - **Input Page**: Allows users to add new data entries for subjects.
@@ -49,10 +52,6 @@ This project uses SQLite as its database solution due to its simplicity and ease
 
 This application is ideal for educators and students to track and analyze academic performance across various subjects. It provides an easy way to input, view, and manage grades or other performance metrics, offering valuable insights through statistical analysis. Its intuitive design makes it accessible for users with any level of technical expertise.
 
-
-
-
-https://github.com/davislyu/Grades-Project/assets/27707434/f72e0bb7-690d-4f51-bbd9-c24d4519c7ce
 
 
 
