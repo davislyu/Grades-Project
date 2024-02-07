@@ -52,6 +52,10 @@ This application is ideal for educators and students to track and analyze academ
 
 
 
+https://github.com/davislyu/Grades-Project/assets/27707434/f72e0bb7-690d-4f51-bbd9-c24d4519c7ce
+
+
+
 ## 📚 License
 
 Distributed under the MIT License. See `LICENSE` for more information.
